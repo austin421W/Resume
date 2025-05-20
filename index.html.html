@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Austin W. Marshall - Ethereal Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #f4f8fc;       /* Very light, slightly cool off-white for main background */
+            --secondary-bg: #ffffff;     /* Pure white for cards or lighter elements */
+            --accent-blue-deep: #0a2463; /* Deep, rich blue for main text and strong accents */
+            --accent-blue-vibrant: #3e92cc; /* A vibrant, primary blue for links, highlights */
+            --accent-blue-light: #a0d2eb; /* A softer, lighter blue for subtle touches, borders */
+            --accent-blue-sky: #e0f2fe;   /* Very light sky blue for backgrounds or hover effects */
+
+            --text-primary: var(--accent-blue-deep);
+            --text-secondary: #4a5568;   /* A cool, medium gray for secondary text */
+            --text-subtle: #718096;     /* A lighter cool gray for less important text */
+
+            --card-bg: rgba(255, 255, 255, 0.85); /* Glassmorphism: Light, semi-transparent */
+            --card-border: rgba(62, 146, 204, 0.3); /* Border for glass cards */
+            --card-shadow: rgba(10, 36, 99, 0.08); /* Softer shadow for light theme */
+            --card-hover-shadow: rgba(10, 36, 99, 0.15);
+
+            --header-image-url: url('https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'); /* Replace with your forest image */
+            --header-overlay-color: rgba(244, 248, 252, 0.7); /* Matches primary-bg for text readability */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-secondary);
+            line-height: 1.7; /* Slightly increased line height for light theme */
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Custom Scrollbar - Light Theme */
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+        body::-webkit-scrollbar-track {
+            background: var(--accent-blue-sky);
+        }
+        body::-webkit-scrollbar-thumb {
+            background-color: var(--accent-blue-vibrant);
+            border-radius: 10px;
+            border: 2px solid var(--accent-blue-sky);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-image: var(--header-image-url);
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed; /* Parallax effect */
+            padding: 100px 0 80px; /* Increased padding for image visibility */
+            text-align: center; /* Center for a grander header feel */
+            position: relative;
+            color: var(--white); /* Temporary for overlay calculation */
+            margin-bottom: 0; /* Nav directly follows */
+        }
+        header::before { /* Overlay for text readability */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--header-overlay-color);
+            z-index: 1;
+        }
+        header .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            color: var(--accent-blue-deep);
+            font-size: clamp(40px, 7vw, 65px);
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); /* Subtle light shadow */
+        }
+
+        header .subtitle {
+            font-size: clamp(18px, 3vw, 22px);
+            color: var(--accent-blue-vibrant);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        nav {
+            background-color: rgba(255, 255, 255, 0.8); /* Light glassmorphism */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(10, 36, 99, 0.07);
+            border-bottom: 1px solid var(--accent-blue-light);
+        }
+
+        nav ul { list-style-type: none; }
+        nav ul li { display: inline-block; margin: 0 15px; }
+        nav ul li a {
+            color: var(--accent-blue-deep);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 6px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--primary-bg);
+            background-color: var(--accent-blue-vibrant);
+        }
+
+        section {
+            padding: 60px 0;
+            /* Optional: Add subtle section-specific background images/textures here */
+            /* background-image: url('your_subtle_forest_texture.png'); */
+        }
+        section:nth-child(odd) { /* Alternate section background for visual rhythm */
+             background-color: var(--secondary-bg);
+        }
+
+        section h2 {
+            color: var(--accent-blue-deep);
+            font-size: 2.4em; /* Slightly larger for light theme */
+            font-weight: 600;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+            text-align: center; /* Centered section titles */
+        }
+        section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue-light), var(--accent-blue-vibrant));
+            border-radius: 2px;
+        }
+
+        .content-card, .job, .education-entry, #contact .contact-info {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            padding: 30px; /* Increased padding */
+            border-radius: 16px; /* More rounded corners */
+            box-shadow: 0 10px 25px var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px; /* Default margin for these elements */
+        }
+        .job:last-child, .education-entry:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-card:hover, .job:hover, .education-entry:hover, #contact .contact-info:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px var(--card-hover-shadow);
+        }
+        /* Specific About me card style if we add an image */
+        #about .about-me-wrapper {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        #about .about-text { flex: 2; }
+        #about .about-image-container {
+            flex: 1;
+            max-width: 300px; /* Max width for the image */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px var(--card-shadow);
+        }
+        #about .about-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+         #about .about-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        #about .content-card p { /* This rule applies to the about-text content-card */
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .job h3, .education-entry h3 {
+            color: var(--accent-blue-deep);
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 1.6em; /* Bolder titles */
+        }
+
+        .job .company, .education-entry .institution {
+            color: var(--accent-blue-vibrant);
+            font-weight: 600; /* Bolder company/institution */
+            font-size: 1.15em;
+            margin-bottom: 5px;
+        }
+
+        .job .dates, .education-entry .dates, .education-entry .degree-info {
+            color: var(--text-subtle);
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+        
+        .job .supervisor, .job .details, .education-entry .details {
+            font-size: 0.9em;
+            color: var(--text-secondary); /* Slightly darker than subtle */
+            margin-bottom: 10px;
+            font-style: normal; /* Removed italic, can be preference */
+        }
+
+        .job ul, .education-entry ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .job ul li, .education-entry ul li {
+            margin-bottom: 10px;
+            padding-left: 22px; /* More space for icon */
+            position: relative;
+            color: var(--text-secondary);
+        }
+        .job ul li::before, .education-entry ul li::before {
+            content: '🌿'; /* Forest-themed icon */
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue-vibrant); /* Keeping this blue */
+            font-size: 1.1em; /* Adjust icon size */
+            top: -2px;
+        }
+        
+        .education-entry .sub-heading {
+            font-weight: 600;
+            color: var(--accent-blue-deep);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+         .education-entry .thesis-info {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+
+        #skills ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center; /* Center skill tags */
+        }
+
+        #skills li {
+            background-color: var(--accent-blue-sky);
+            color: var(--accent-blue-deep);
+            padding: 12px 20px; /* Slightly larger pills */
+            border-radius: 25px;
+            font-size: 0.95em;
+            font-weight: 500;
+            border: 1px solid var(--accent-blue-light);
+            transition: all 0.3s ease;
+        }
+        #skills li:hover {
+            background-color: var(--accent-blue-vibrant);
+            color: var(--primary-bg);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 6px 12px rgba(62, 146, 204, 0.3);
+        }
+
+        #contact .contact-info p {
+            font-size: 1.15em;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+        #contact .contact-info p:last-child { margin-bottom: 0; }
+
+        #contact .contact-info strong {
+            color: var(--accent-blue-deep);
+            font-weight: 600;
+        }
+        #contact .contact-info a {
+            color: var(--accent-blue-vibrant);
+            text-decoration: none;
+            position: relative;
+            font-weight: 500;
+        }
+        #contact .contact-info a::after {
+            content: ''; position: absolute; width: 0; height: 2px; /* Thicker underline */
+            display: block; margin-top: 3px; right: 0;
+            background: var(--accent-blue-vibrant);
+            transition: width 0.4s ease;
+        }
+        #contact .contact-info a:hover::after { width: 100%; left: 0; }
+        #contact .contact-info a:hover { color: var(--accent-blue-deep); }
+
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            background-color: var(--accent-blue-sky);
+            color: var(--accent-blue-deep);
+            font-size: 0.9em;
+            border-top: 1px solid var(--accent-blue-light);
+        }
+        footer p { margin: 0; }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header { padding: 80px 0 60px; background-attachment: scroll; } /* Disable parallax on mobile for performance */
+            nav ul li { display: block; margin: 10px 0; }
+            section h2 { font-size: 2em; }
+            .content-card, .job, .education-entry, #contact .contact-info { padding: 20px; }
+            #about .about-me-wrapper { flex-direction: column; }
+            #about .about-image-container { max-width: 100%; margin-top: 20px; }
+        }
+         @media (max-width: 480px) {
+            header h1 { font-size: 32px; }
+            header .subtitle { font-size: 17px; }
+            nav ul li a { padding: 8px 10px; }
+            #skills li { padding: 10px 15px; font-size: 0.9em;}
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Austin W. Marshall</h1>
+            <p class="subtitle">Forest Management Researcher | GIS & Environmental Technician
+
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="container">
+
+            <section id="about">
+                <h2>About Me</h2>
+                <div class="about-me-wrapper">
+                    <div class="about-text content-card">
+                        <p>
+                            I'm Austin Marshall, a forestry researcher and Master of Science candidate at Purdue University, focusing on ecological restoration and forest management. My work involves studying silvicultural strategies to promote oak regeneration in Indiana’s high-quality mesic sites, combining field research with modern remote sensing techniques.
+                        </p>
+                        <p>
+                            With hands-on experience in fire ecology, forest inventory, invasive species management, and digital forestry tools like ArcGIS and FVS, I aim to connect ecological theory with practical land management. Whether I’m involved in prescribed burns, collecting canopy samples, or designing spatial surveys, my goal is to understand how we can sustainably restore healthy, diverse forest ecosystems in a changing world.
+                        </p>
+                        <p>
+                            I've also been involved in student leadership roles, serving as President of Purdue’s Student Association for Fire Ecology and as Secretary of the Purdue Chapter of the Society of American Foresters. These roles helped me develop skills in outreach, collaboration, and professional engagement — all important for natural resource management.
+                        </p>
+                    </div>
+                    <div class="about-image-container">
+                        <img src="https://i.imgur.com/vhKXoiO.jpeg" alt="Austin W. Marshall">
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience">
+                <h2>Work Experience</h2>
+
+                <div class="job">
+                    <h3>Graduate Student Research Assistant</h3>
+                    <p class="company">Purdue Department of Forestry and Natural Resources</p>
+                    <p class="dates">January 2025 – Current</p>
+                    <p class="details">West Lafayette, IN | 20+ hrs/wk | $28,000 Salary</p>
+                    <p class="supervisor">Supervisor: Dr. Mike Saunders</p>
+                    <ul>
+                        <li>Conducting Master's research on testing new silvicultural methods for mesic sites in Indiana.</li>
+                        <li>Managing and maintaining multiple research projects, including precise control of variables (e.g., oak regeneration watering, weed removal).</li>
+                        <li>Performing ground truth surveys for digital forestry plots to validate and improve remote sensing accuracy.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <h3>Undergraduate Research Technician</h3>
+                    <p class="company">Purdue Department of Forestry and Natural Resources</p>
+                    <p class="dates">July 2024 – January 2025</p>
+                     <p class="details">West Lafayette, IN | 15+ hrs/wk | $17.00/hr</p>
+                    <p class="supervisor">Supervisor: Dr. Mike Saunders</p>
+                    <ul>
+                        <li>Contributed to the maintenance of various research projects, focusing on controlling independent variables.</li>
+                        <li>Performed ground truth surveying to assess the accuracy of digital forestry remote sensing techniques.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <h3>Park Security Officer</h3>
+                    <p class="company">Lafayette Parks Department</p>
+                    <p class="dates">September 2023 – January 2025</p>
+                    <p class="details">Lafayette, IN | 20+ hrs/wk | $16.00/hr</p>
+                    <p class="supervisor">Supervisor: Mike Jones</p>
+                    <ul>
+                        <li>Helped ensure public safety across city parks through teamwork and patrolling.</li>
+                        <li>Wrote incident reports and communicated park issues to the City of Lafayette.</li>
+                        <li>Worked to build positive community relations as a representative of the city parks department.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <h3>Research Assistant</h3>
+                    <p class="company">Purdue Department of Forestry and Natural Resources</p>
+                    <p class="dates">July 2023 – December 2024</p>
+                    <p class="details">West Lafayette, IN | 10+ hrs/wk | $15.00/hr</p>
+                    <p class="supervisor">Supervisor: Mo Zhou</p>
+                    <ul>
+                        <li>Collected forest product pricing data by contacting producers directly.</li>
+                        <li>Compiled, analyzed, and interpreted survey data for industry reports.</li>
+                        <li>Helped expand contact networks for future surveys and built relationships with timber industry stakeholders.</li>
+                    </ul>
+                </div>
+
+                 <div class="job">
+                    <h3>Forest Consultant Intern</h3>
+                    <p class="company">Multi-Resource Management</p>
+                    <p class="dates">June 2023 – August 2023</p>
+                    <p class="details">Birdseye, IN | 40+ hrs/wk | $20.00/hr</p>
+                    <p class="supervisor">Supervisor: Doug Brown</p>
+                    <ul>
+                        <li>Managed invasive species using backpack and side-by-side sprayers.</li>
+                        <li>Performed vine cutting and stump treatments with chainsaws.
+                        <li>Conducted forest inventories, timber markings, and appraisals.</li>
+                        <li>Assisted in marking harvests and thinnings on client properties.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="education">
+                <h2>Education</h2>
+                
+                <div class="education-entry">
+                    <h3>Master of Science, Forest Science and Management</h3>
+                    <p class="institution">Purdue University, College of Agriculture</p>
+                    <p class="dates">West Lafayette, Indiana | Expected Graduation: Spring 2027</p>
+                    <p class="degree-info">GPA: 3.3/4.0 | Advisor: Dr. Michael Saunders</p>
+                    <p class="thesis-info">Thesis: Oak Regeneration and Management on Mesic Sites in Indiana</p>
+                </div>
+
+                <div class="education-entry">
+                    <h3>Bachelor of Science, Forest Management</h3>
+                    <p class="institution">Purdue University, College of Agriculture</p>
+                    <p class="dates">West Lafayette, Indiana | Expected Graduation: Fall 2024</p>
+                    <p class="degree-info">Minor: Computer Information Technology | GPA: 3.0/4.0</p>
+                    
+                    <p class="sub-heading">Key Coursework & Focus Areas:</p>
+                    <ul>
+                        <li>Silviculture & Forest Ecosystems</li>
+                        <li>GIS & Remote Sensing (ArcGIS)</li>
+                        <li>Forest Economics & Measurements</li>
+                        <li>Python & Java Programming</li>
+                        <li>Network Administration & Management</li>
+                        <li>Dendrology, Botany, Fire Ecology</li>
+                        <li>Calculus I</li>
+                        <li>Arboriculture</li>
+                        <li>Agronomy</li>
+                        <li>Mammals and Birds</li>
+                        <li>Environmental Policy</li>
+                        <li>Biology and Ecology</li>
+                        <li>General Chemistry</li>
+                        <li>Intro to Botany</li>
+                    </ul>
+                    <p class="sub-heading">Leadership & Activities:</p>
+                    <ul>
+                        <li>Secretary, Society of American Foresters (Purdue Chapter)</li>
+                        <li>President, Student Association of Fire Ecology</li>
+                        <li>Student Council Member</li>
+                        <li>Attended Summer Practicum</li>
+                    </ul>
+                </div>
+
+                <div class="education-entry">
+                    <h3>High School Diploma</h3>
+                    <p class="institution">Maconaquah High School</p>
+                    <p class="dates">Bunker Hill, Indiana US | Graduated: 2024</p>
+                    <p class="degree-info">Academic Honors & Technical Honors</p>
+                     <p class="sub-heading">Activities:</p>
+                    <ul>
+                        <li>National Honors Society Member</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2>Core Competencies & Certifications</h2>
+                <ul>
+                    <li>Land Navigation (Topo, Compass, GPS)</li>
+                    <li>GIS & Spatial Analysis (ArcGIS)</li>
+                    <li>Python & Java Programming</li>
+                    <li>Network Design & Management</li>
+                    <li>Advanced Computer Hardware</li>
+                    <li>Remote Sensing Principles</li>
+                    <li>Silvicultural Practices & Prescriptions</li>
+                    <li>Forest Inventory & Mensuration</li>
+                    <li>Timber Marking & Appraisal</li>
+                    <li>Invasive Species Management & Herbicide Use</li>
+                    <li>Chainsaw & Brushsaw Operation</li>
+                    <li>Fire Ecology (Red Card Certified)</li>
+                    <li>Burn Plan Writing (BehavePlus)</li>
+                    <li>Forest Vegetation Simulator (FVS)</li>
+                    <li>Technical Climbing & Rappelling</li>
+                    <li>Advanced Microsoft Office Suite (Excel, Word)</li>
+                    <li>Power Tools & Farm Equipment Operation</li>
+                    <li>Forest Management Plan Writing</li>
+                </ul>
+            </section>
+
+            <section id="contact">
+                <h2>Get In Touch</h2>
+                <div class="contact-info">
+                    <p><strong>Name:</strong> Austin W. Marshall</p>
+                    <p><strong>Temporary:</strong> 820 Salem St, Lafayette, IN 47904</p>
+                    <p><strong>Permanent:</strong> 721 W 1000 S, Bunker Hill, IN 46914</p>
+                    <p><strong>Phone:</strong> <a href="tel:765-252-9354">765-252-9354</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:Marsh164@purdue.edu">Marsh164@purdue.edu</a></p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© <span id="year"></span> Austin W. Marshall. Design inspired by nature's elegance. References available upon request.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelectorAll('nav a').forEach(navLink => navLink.classList.remove('active'));
+                this.classList.add('active');
+                
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if (targetElement) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetPosition - navHeight - 20; // 20px extra margin
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Set active nav link on scroll
+        const sections = document.querySelectorAll('main section'); // Target sections within main
+        const navLinks = document.querySelectorAll('nav ul li a');
+        const navHeight = document.querySelector('nav').offsetHeight;
+
+        window.addEventListener('scroll', ()=> {
+            let currentId = '';
+            sections.forEach( section => {
+                const sectionTop = section.offsetTop - navHeight - 50; // Adjusted offset
+                if (pageYOffset >= sectionTop) {
+                    currentId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach( link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === currentId) {
+                    link.classList.add('active');
+                }
+            });
+             // If at the top, no link is active (or set 'About' as active)
+            if (window.pageYOffset < sections[0].offsetTop - navHeight - 50) {
+                 navLinks.forEach(link => link.classList.remove('active'));
+                 // Optionally activate 'About' if it's the first section
+                 // if (navLinks[0].getAttribute('href') === '#about') navLinks[0].classList.add('active');
+            }
+        });
+
+        // Update year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
